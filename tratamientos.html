@@ -1,0 +1,714 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tratamientos — C.T.P. Vittale | Psiquiatría & Neurología</title>
+<meta name="description" content="Conoce todos los tratamientos de C.T.P. Vittale: adicciones, psiquiatría, neurología, psicoterapia. Un camino personalizado hacia tu bienestar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Outfit:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#040C18;--accent:#5CC8BE;--ar:92,200,190;--gold:#C8A05C;
+  --text:#fff;--muted:rgba(255,255,255,.52);--border:rgba(255,255,255,.07);
+  --ba:rgba(92,200,190,.2);--df:'Fraunces',Georgia,serif;
+  --db:'Outfit',system-ui,sans-serif;--dm:'Space Grotesk',monospace;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--db);line-height:1.6;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.04;pointer-events:none;z-index:9999;mix-blend-mode:overlay}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(92,200,190,.25);border-radius:2px}
+
+/* NAV */
+#nav{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:44px;background:rgba(4,12,24,.75);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);border-radius:100px;padding:12px 20px 12px 28px;transition:all .4s ease;white-space:nowrap}
+#nav.scrolled{background:rgba(4,12,24,.92);border-color:rgba(92,200,190,.12);box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.logo{font-family:var(--df);font-size:18px;font-weight:700;font-style:italic;letter-spacing:-.02em;color:var(--text);text-decoration:none}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-family:var(--dm);font-size:12px;font-weight:400;letter-spacing:.05em;color:rgba(255,255,255,.55);text-decoration:none;text-transform:uppercase;transition:color .2s;display:inline-flex;align-items:center;line-height:1}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.nav-active{color:var(--accent)}
+.nav-cta{background:var(--accent)!important;color:#030B16!important;font-weight:600!important;padding:10px 22px!important;border-radius:100px;letter-spacing:.04em!important;transition:all .25s ease!important}
+.nav-cta:hover{background:#7dd8d0!important;transform:scale(1.04)}
+.nav-ham{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;width:36px;height:36px;flex-shrink:0}
+.nav-ham span{display:block;width:20px;height:1.5px;background:rgba(255,255,255,.7);border-radius:2px;transition:all .3s ease}
+.nav-mobile{display:none;position:fixed;inset:0;background:rgba(4,12,24,.97);backdrop-filter:blur(24px);z-index:1001;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:40px 32px}
+.nav-mobile.open{display:flex}
+.nav-mob-close{position:absolute;top:24px;right:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.55);font-size:22px;line-height:1;transition:all .2s;font-family:var(--dm)}
+.nav-mob-close:hover{background:rgba(255,255,255,.15);color:var(--text)}
+.nav-mobile a{font-family:var(--dm);font-size:18px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.nav-mobile a:hover,.nav-mobile a.nav-active{color:var(--accent)}
+.nav-mobile .nav-cta{background:var(--accent)!important;color:#030B16!important;font-weight:600!important;padding:14px 36px!important;border-radius:100px;margin-top:8px}
+
+/* BOTONES */
+.btn-fill{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#030B16;font-family:var(--dm);font-size:13px;font-weight:600;letter-spacing:.06em;padding:16px 36px;border-radius:100px;text-decoration:none;position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.btn-fill::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .5s ease}
+.btn-fill:hover::before{left:100%}
+.btn-fill:hover{transform:scale(1.04);box-shadow:0 0 48px rgba(var(--ar),.4)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:rgba(255,255,255,.65);font-family:var(--dm);font-size:13px;font-weight:400;letter-spacing:.06em;padding:16px 36px;border-radius:100px;border:1px solid rgba(255,255,255,.15);text-decoration:none;transition:all .25s ease}
+.btn-outline:hover{border-color:rgba(255,255,255,.4);color:var(--text);transform:scale(1.02)}
+.lbl{display:flex;align-items:center;gap:16px;font-family:var(--dm);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);opacity:.75;margin-bottom:28px}
+.lbl::before{content:'';display:block;width:32px;height:1px;background:var(--accent)}
+
+/* FOOTER */
+footer{background:rgba(255,255,255,.018);border-top:1px solid var(--border);padding:80px 64px 52px}
+.fi-inner{max-width:1400px;margin:0 auto}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;padding-bottom:60px;border-bottom:1px solid var(--border)}
+.fb p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.33);max-width:300px;margin-bottom:26px;margin-top:20px}
+.ftag{font-family:var(--df);font-size:17px;font-style:italic;font-weight:400;color:rgba(255,255,255,.26)}
+.fc h4{font-family:var(--dm);font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.24);margin-bottom:18px}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.fc a{font-size:14px;color:rgba(255,255,255,.42);text-decoration:none;transition:color .2s}
+.fc a:hover{color:var(--text)}
+.fb-bot{padding-top:34px;display:flex;justify-content:space-between;align-items:center}
+.fb-bot p{font-family:var(--dm);font-size:12px;color:rgba(255,255,255,.2)}
+.velox-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.velox-by{font-family:var(--dm);font-size:12px;color:rgba(255,255,255,.22)}
+.velox-by strong{color:rgba(255,255,255,.4);font-weight:600}
+.velox-wa{display:inline-flex;align-items:center;gap:7px;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.18);color:rgba(255,255,255,.45);font-family:var(--dm);font-size:11px;font-weight:500;letter-spacing:.07em;padding:7px 16px;border-radius:100px;text-decoration:none;transition:all .25s ease}
+.velox-wa:hover{background:rgba(37,211,102,.16);border-color:rgba(37,211,102,.38);color:#4dda80}
+.fc-wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#030B16;font-family:var(--dm);font-size:12px;font-weight:600;letter-spacing:.05em;padding:11px 20px;border-radius:100px;text-decoration:none;transition:all .25s ease;margin-top:16px;width:fit-content}
+.fc-wa-btn:hover{background:#1eb858;transform:scale(1.03)}
+.wa{position:fixed;bottom:32px;right:32px;z-index:2000;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 32px rgba(37,211,102,.4);transition:transform .25s ease,box-shadow .25s ease}
+.wa:hover{transform:scale(1.1);box-shadow:0 12px 44px rgba(37,211,102,.55)}
+.wa svg{width:28px;height:28px;fill:white}
+#spl{position:fixed;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(var(--ar),.03) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);z-index:9990;mix-blend-mode:screen}
+[data-r]{opacity:0;transform:translateY(28px);filter:blur(3px);transition:opacity .75s ease,transform .75s ease,filter .75s ease}
+[data-r].on{opacity:1;transform:translateY(0);filter:blur(0)}
+
+/* ── HERO ── */
+#tr-hero{padding:180px 64px 110px;position:relative;overflow:hidden;text-align:center;color:#fff;background:linear-gradient(180deg,rgba(4,12,24,.88) 0%,rgba(4,12,24,.75) 100%),url("./banner%20tipos%20de%20tratamientos.jpg") center/cover no-repeat}
+#tr-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(92,200,190,.07) 0%,transparent 65%);pointer-events:none}
+#tr-hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:240px;background:linear-gradient(180deg,transparent 0%,rgba(4,12,24,.92) 100%);pointer-events:none}
+.tr-bread{font-family:var(--dm);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:36px;display:flex;align-items:center;justify-content:center;gap:10px}
+.tr-bread a{color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+.tr-bread a:hover{color:var(--accent)}
+.tr-bread span{color:rgba(92,200,190,.4)}
+.tr-hero-tag{display:inline-flex;align-items:center;gap:16px;font-family:var(--dm);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);opacity:.75;margin-bottom:24px}
+.tr-hero-tag::before,.tr-hero-tag::after{content:'';display:block;width:24px;height:1px;background:var(--accent);opacity:.6}
+.tr-hero-h1{font-family:var(--df);font-size:clamp(52px,7vw,96px);font-weight:800;line-height:.92;letter-spacing:-.05em;font-variation-settings:"opsz" 144;margin-bottom:28px}
+.tr-hero-h1 em{font-style:italic;color:var(--accent)}
+.tr-hero-sub{font-family:var(--dm);font-size:clamp(12px,1.3vw,14px);font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.36);max-width:520px;margin:0 auto 52px;line-height:1.75;background:rgba(4,12,24,.55);backdrop-filter:blur(16px);padding:10px 28px;border-radius:100px;border:1px solid rgba(255,255,255,.08);display:inline-block}
+
+/* FINAL CANVAS */
+#tr-final{height:204vh;position:relative}
+.tr-final-sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+.tr-final-sticky::before{content:'';position:absolute;top:0;left:0;right:0;height:220px;background:linear-gradient(to bottom,var(--bg) 0%,transparent 100%);z-index:20;pointer-events:none}
+#tr-final-canvas{position:absolute;inset:0;width:100%;height:100%;filter:contrast(1.05)}
+.tr-final-ov{position:absolute;inset:0;background:rgba(4,12,24,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:2}
+.tr-final-con{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:10;padding:0 32px 110px}
+.tr-final-h2{font-family:var(--df);font-size:clamp(52px,9vw,110px);font-weight:800;line-height:.9;letter-spacing:-.05em;font-variation-settings:"opsz" 144;max-width:1000px;margin-bottom:28px}
+.tr-final-p{font-size:clamp(15px,1.5vw,18px);color:rgba(255,255,255,.6);max-width:520px;line-height:1.75;margin-bottom:64px}
+.tr-final-ctas{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.tr-final-ctas a{min-width:180px}
+
+/* ── FILTRO ── */
+#tr-filter{padding:24px 64px 0;max-width:1400px;margin:0 auto 0;position:relative;z-index:3}
+#tr-hero #tr-filter{padding-top:24px;padding-bottom:0}
+.fp-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.fp{font-family:var(--dm);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:10px 22px;cursor:pointer;background:rgba(255,255,255,.06);transition:all .25s ease;user-select:none}
+.fp:hover{border-color:rgba(var(--ar),.35);color:var(--accent);background:rgba(255,255,255,.12)}
+.fp.active{background:rgba(var(--ar),.18);border-color:rgba(var(--ar),.6);color:var(--accent)}
+
+/* ── GRID ── */
+#tr-grid-sec{padding:0 64px 120px;max-width:1400px;margin:0 auto}
+.tc-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:20px}
+.tcard{background:rgba(255,255,255,.028);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .35s ease;opacity:0;transform:translateY(24px);cursor:default}
+.tcard.visible{opacity:1;transform:translateY(0)}
+.tcard.hidden{display:none}
+.tcard:hover{transform:translateY(-4px);border-color:var(--ba);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.tcard-img{aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(var(--ar),.07) 0%,rgba(4,12,24,.6) 100%)}
+.tcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.tcard:hover .tcard-img img{transform:scale(1.05)}
+.tcard-body{padding:26px 26px 30px}
+.tcard-cat{font-family:var(--dm);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(var(--ar),.6);margin-bottom:8px}
+.tcard-title{font-family:var(--df);font-size:21px;font-weight:700;letter-spacing:-.025em;line-height:1.15;margin-bottom:11px}
+.tcard-desc{font-size:13px;line-height:1.7;color:rgba(255,255,255,.44);margin-bottom:18px}
+.tcard-cta{display:inline-flex;align-items:center;gap:7px;font-family:var(--dm);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none;cursor:pointer;background:none;border:none;padding:0;transition:gap .2s ease}
+.tcard-cta svg{width:13px;height:13px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.tcard:hover .tcard-cta svg{transform:translateX(3px)}
+
+/* ── DETALLE ── */
+#tr-details{padding:80px 64px 100px;border-top:1px solid var(--border)}
+.tr-det-header{max-width:1400px;margin:0 auto 80px;text-align:center}
+.tr-det-header h2{font-family:var(--df);font-size:clamp(38px,4.5vw,60px);font-weight:700;line-height:1.02;letter-spacing:-.035em;font-variation-settings:"opsz" 144;margin-bottom:14px}
+.tr-det-header h2 em{font-style:italic;color:var(--accent)}
+.tr-det-header p{font-size:15px;color:rgba(255,255,255,.4);max-width:520px;margin:0 auto;line-height:1.75}
+.tr-det-item{max-width:1400px;margin:0 auto 100px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.tr-det-item.rev{direction:rtl}
+.tr-det-item.rev > *{direction:ltr}
+.tr-det-img{border-radius:24px;overflow:hidden;aspect-ratio:4/3;border:1px solid var(--border)}
+.tr-det-img img{width:100%;height:100%;object-fit:cover;display:block}
+.tr-det-img-ph{width:100%;height:100%;min-height:340px;background:linear-gradient(135deg,rgba(var(--ar),.07) 0%,rgba(4,12,24,.7) 100%)}
+.tr-det-txt .lbl{margin-bottom:16px}
+.tr-det-txt h3{font-family:var(--df);font-size:clamp(30px,3.2vw,46px);font-weight:700;line-height:1.05;letter-spacing:-.03em;font-variation-settings:"opsz" 144;margin-bottom:18px}
+.tr-det-txt h3 em{font-style:italic;color:var(--accent)}
+.tr-det-txt p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.54);margin-bottom:14px}
+.benefit-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0 28px}
+.benefit-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,.56);line-height:1.55}
+.benefit-list li::before{content:'';display:block;width:18px;height:18px;flex-shrink:0;margin-top:1px;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9' cy='9' r='8.5' stroke='rgba(92,200,190,.35)'/%3E%3Cpath d='M5.5 9l2.5 2.5 5-5' stroke='%235CC8BE' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:contain}
+
+/* ── CTA FINAL ── */
+#tr-cta{padding:120px 64px;text-align:center;position:relative;overflow:hidden;border-top:1px solid var(--border)}
+#tr-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(92,200,190,.06) 0%,transparent 65%);pointer-events:none}
+.tr-cta-inner{max-width:700px;margin:0 auto;position:relative;z-index:2}
+.tr-cta-inner h2{font-family:var(--df);font-size:clamp(40px,6vw,72px);font-weight:800;line-height:.95;letter-spacing:-.05em;font-variation-settings:"opsz" 144;margin-bottom:18px}
+.tr-cta-inner h2 em{font-style:italic;color:var(--accent)}
+.tr-cta-inner p{font-size:15px;color:rgba(255,255,255,.43);line-height:1.75;margin-bottom:44px;max-width:460px;margin-left:auto;margin-right:auto}
+.tr-cta-btns{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .nav-ham{display:flex}
+  #nav .nav-links{display:none}
+  #tr-hero{padding:140px 32px 80px}
+  #tr-filter{padding:24px 32px 0}
+  #tr-grid-sec{padding:0 32px 80px}
+  .tc-grid{grid-template-columns:repeat(2,1fr)}
+  #tr-details{padding:60px 32px 80px}
+  .tr-det-item{grid-template-columns:1fr;gap:40px;margin-bottom:72px}
+  .tr-det-item.rev{direction:ltr}
+  #tr-cta{padding:80px 32px}
+  footer{padding:60px 32px 40px}
+  .ft{grid-template-columns:1fr 1fr}
+  .fb{grid-column:1/-1}
+}
+@media(max-width:600px){
+  #nav{padding:10px 16px 10px 20px;gap:20px}
+  .tc-grid{grid-template-columns:1fr}
+  .tr-cta-btns{flex-direction:column;align-items:stretch}
+  .tr-cta-btns .btn-fill,.tr-cta-btns .btn-outline{justify-content:center}
+  .ft{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="spl"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="./index.html" class="logo" style="display:flex;align-items:center"><img src="./logo.png" alt="CTP Vittale" style="height:38px;display:block" onerror="this.outerHTML='V<em>i</em>ttale'"></a>
+  <div class="nav-links">
+    <a href="./tratamientos.html" class="nav-active">Tratamientos</a>
+    <a href="./index.html#ch4">Proceso</a>
+    <a href="./index.html#ch5">La Doctora</a>
+    <a href="./index.html#ch6">Planes</a>
+    <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20consultar%20sobre%20C.T.P.%20Vittale." class="nav-cta">Agendar consulta</a>
+  </div>
+  <button class="nav-ham" id="nav-ham" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <button class="nav-mob-close" id="nav-mob-close">×</button>
+  <a href="./tratamientos.html" class="nav-active" onclick="mobClose()">Tratamientos</a>
+  <a href="./index.html#ch4" onclick="mobClose()">Proceso</a>
+  <a href="./index.html#ch5" onclick="mobClose()">La Doctora</a>
+  <a href="./index.html#ch6" onclick="mobClose()">Planes</a>
+  <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20consultar%20sobre%20C.T.P.%20Vittale." class="nav-cta" onclick="mobClose()">Agendar consulta</a>
+</div>
+
+<!-- HERO -->
+<section id="tr-hero">
+  <p class="tr-bread" data-r><a href="./index.html">Inicio</a><span>›</span>Tratamientos</p>
+  <div class="tr-hero-tag" data-r>C.T.P. Vittale</div>
+  <h1 class="tr-hero-h1" data-r>Tratamientos &amp;<br><em>Especialidades</em></h1>
+  <p class="tr-hero-sub" data-r>Cada historia de recuperación es única · Diseñamos el camino correcto para la tuya</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap" data-r>
+    <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20tratamientos." class="btn-fill">Agendar consulta</a>
+    <a href="#tr-grid-sec" class="btn-outline">Ver todos</a>
+  </div>
+  <div id="tr-filter">
+    <div class="fp-row">
+      <button class="fp active" data-cat="todos">Todos</button>
+      <button class="fp" data-cat="adicciones">Adicciones</button>
+      <button class="fp" data-cat="psiquiatria">Psiquiatría</button>
+      <button class="fp" data-cat="psicoterapia">Psicoterapia</button>
+      <button class="fp" data-cat="neurologia">Neurología</button>
+    </div>
+  </div>
+</section>
+
+<!-- GRID -->
+  <div class="tc-grid" id="tc-grid">
+
+    <!-- ADICCIONES -->
+    <div class="tcard" data-cat="adicciones">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/dependencia%20al%20alcohol.png" alt="Alcohol"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Adicciones</div>
+        <div class="tcard-title">Dependencia al Alcohol</div>
+        <p class="tcard-desc">Desintoxicación supervisada, rehabilitación y prevención de recaídas con abordaje médico y terapéutico completo.</p>
+        <a href="#det-alcohol" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tcard" data-cat="adicciones">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/dependencia%20a%20las%20sustancias.png" alt="Dependencia a Sustancias"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Adicciones</div>
+        <div class="tcard-title">Dependencia a Sustancias</div>
+        <p class="tcard-desc">Cocaína, marihuana, pasta base y otras. Protocolo de desintoxicación con monitoreo clínico y soporte terapéutico intensivo.</p>
+        <a href="#det-sustancias" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tcard" data-cat="adicciones">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/opioides.png" alt="Psicofármacos y Opioides"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Adicciones</div>
+        <div class="tcard-title">Psicofármacos y Opioides</div>
+        <p class="tcard-desc">Dependencia a benzodiacepinas y opioides. Reducción gradual supervisada con manejo del síndrome de abstinencia.</p>
+        <a href="#det-sustancias" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tcard" data-cat="adicciones">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/dependencia%20conductual.png" alt="Adicciones Conductuales"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Adicciones</div>
+        <div class="tcard-title">Adicciones Conductuales</div>
+        <p class="tcard-desc">Juego patológico, adicción a pantallas y compras compulsivas. Intervención cognitivo-conductual especializada.</p>
+        
+      </div>
+    </div>
+
+    <div class="tcard" data-cat="adicciones">
+        <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/comportamiento%20alimenticio.png" alt="Trastornos Alimentarios"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Adicciones</div>
+        <div class="tcard-title">Trastornos Alimentarios</div>
+        <p class="tcard-desc">Anorexia, bulimia y trastorno por atracón. Abordaje multidisciplinario con psiquiatra, nutricionista y terapeuta.</p>
+        <a href="#det-conductuales" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <!-- PSIQUIATRÍA -->
+    <div class="tcard" data-cat="psiquiatria">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/psiquiatra.png" alt="Evaluación"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Psiquiatría</div>
+        <div class="tcard-title">Evaluación Psiquiátrica Completa</div>
+        <p class="tcard-desc">Diagnóstico integral del estado mental, historia clínica y factores neurobiológicos. La base de todo tratamiento efectivo. 90 min.</p>
+        <a href="#det-evaluacion" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tcard" data-cat="psiquiatria">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/ansiedad%20y%20depresion.png" alt="Depresión"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Psiquiatría</div>
+        <div class="tcard-title">Depresión y Ansiedad</div>
+        <p class="tcard-desc">Tratamiento multimodal para depresión mayor, ansiedad generalizada y ataques de pánico con seguimiento continuo.</p>
+        <a href="#det-evaluacion" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tcard" data-cat="psiquiatria">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/tdah%20adultos.png" alt="TDAH"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Psiquiatría</div>
+        <div class="tcard-title">TDAH en Adultos</div>
+        <p class="tcard-desc">Diagnóstico y manejo del Trastorno por Déficit de Atención con protocolos actualizados y personalizados para adultos.</p>
+        <a href="#det-evaluacion" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tcard" data-cat="psiquiatria">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/psiquiatria%20geriatrica.png" alt="Geriatría"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Psiquiatría</div>
+        <div class="tcard-title">Psiquiatría Geriátrica</div>
+        <p class="tcard-desc">Alzheimer, demencia y deterioro cognitivo. Cuidado especializado para adultos mayores con enfoque multidisciplinario.</p>
+        <a href="#det-evaluacion" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <!-- PSICOTERAPIA -->
+    <div class="tcard" data-cat="psicoterapia">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/terapia%20cognitivo%20conductual.png" alt="TCC"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Psicoterapia</div>
+        <div class="tcard-title">TCC — Cognitivo-Conductual</div>
+        <p class="tcard-desc">Transformá patrones de pensamiento limitantes. La técnica con mayor evidencia científica para depresión, ansiedad y adicciones.</p>
+        <a href="#det-tcc" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tcard" data-cat="psicoterapia">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/terapia%20familiar.png" alt="Familiar"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Psicoterapia</div>
+        <div class="tcard-title">Terapia Familiar</div>
+        <p class="tcard-desc">Intervención sistémica para vínculos y dinámicas familiares. Esencial cuando la adicción o el trastorno afecta a todo el grupo.</p>
+        <a href="#det-tcc" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tcard" data-cat="psicoterapia">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/trauma%20y%20ptsd.png" alt="Trauma y PTSD"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Psicoterapia</div>
+        <div class="tcard-title">Trauma y PTSD</div>
+        <p class="tcard-desc">Tratamiento con EMDR y terapias de exposición graduada para trauma complejo y trastorno de estrés postraumático.</p>
+        <a href="#det-tcc" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <!-- NEUROLOGÍA -->
+    <div class="tcard" data-cat="neurologia">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/neurologia.png" alt="Neurología"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Neurología</div>
+        <div class="tcard-title">Neurología Clínica</div>
+        <p class="tcard-desc">Evaluación del sistema nervioso, diagnóstico diferencial y seguimiento especializado para patologías neurológicas complejas.</p>
+        <a href="#det-neurologia" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tcard" data-cat="neurologia">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/transtornos%20del%20sue%C3%B1o.png" alt="Sueño" style="opacity:0.8"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Neurología</div>
+        <div class="tcard-title">Trastornos del Sueño</div>
+        <p class="tcard-desc">Insomnio crónico, apnea, alteraciones circadianas y parasomnias. Enfoque neurológico y conductual integrado.</p>
+        <a href="#det-neurologia" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tcard" data-cat="neurologia">
+      <div class="tcard-img"><img src="./recursos%20imagenes%20vittale/segunda opinion.png" alt="Segunda Opinión"></div>
+      <div class="tcard-body">
+        <div class="tcard-cat">Neurología</div>
+        <div class="tcard-title">Segunda Opinión</div>
+        <p class="tcard-desc">Revisión crítica e independiente de diagnóstico o plan de tratamiento previo con perspectiva clínica actualizada.</p>
+        <a href="#det-neurologia" class="tcard-cta">Ver tratamiento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DETALLE -->
+<section id="tr-details">
+  <div class="tr-det-header" data-r>
+    <div class="lbl" style="justify-content:center;margin-bottom:16px">Profundizá en cada tratamiento</div>
+    <h2>Cada diagnóstico,<br>un <em>camino único.</em></h2>
+    <p>Conoce en detalle nuestros programas y cómo abordamos cada condición con rigor científico.</p>
+  </div>
+
+  <!-- Alcohol -->
+  <div class="tr-det-item" id="det-alcohol" data-r>
+    <div class="tr-det-img"><img src="./recursos%20imagenes%20vittale/dependencia%20al%20alcohol.png" alt="Dependencia al Alcohol"></div>
+    <div class="tr-det-txt">
+      <div class="lbl">Adicciones · 01</div>
+      <h3>Dependencia<br>al <em>Alcohol</em></h3>
+      <p>La dependencia alcohólica es una enfermedad crónica que requiere abordaje médico especializado. Trabajamos en tres fases: desintoxicación supervisada, rehabilitación y prevención de recaídas.</p>
+      <p>Nuestro protocolo integra farmacoterapia, psicoterapia individual y grupal, y soporte familiar para una recuperación sostenida.</p>
+      <ul class="benefit-list">
+        <li>Desintoxicación hospitalaria o ambulatoria según evaluación</li>
+        <li>Manejo del síndrome de abstinencia con medicación específica</li>
+        <li>Terapia motivacional y prevención de recaídas</li>
+        <li>Grupos de apoyo y seguimiento a largo plazo</li>
+        <li>Programa familiar de psicoeducación</li>
+      </ul>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20me%20interesa%20el%20tratamiento%20de%20dependencia%20al%20alcohol." class="btn-fill">Consultar programa</a>
+    </div>
+  </div>
+
+  <!-- Sustancias -->
+  <div class="tr-det-item rev" id="det-sustancias" data-r>
+    <div class="tr-det-img"><img src="./recursos%20imagenes%20vittale/dependencia%20a%20las%20sustancias.png" alt="Dependencia a Sustancias"></div>
+    <div class="tr-det-txt">
+      <div class="lbl">Adicciones · 02</div>
+      <h3>Dependencia<br>a <em>Sustancias</em></h3>
+      <p>Cocaína, marihuana, pasta base y otras drogas generan dependencias que requieren tratamiento diferenciado según la sustancia y el perfil del paciente.</p>
+      <p>Evaluamos el nivel de dependencia, comorbilidades psiquiátricas y contexto social para diseñar un programa completamente personalizado.</p>
+      <ul class="benefit-list">
+        <li>Evaluación toxicológica y psiquiátrica inicial completa</li>
+        <li>Desintoxicación bajo supervisión médica continua</li>
+        <li>TCC especializada en adicciones a sustancias</li>
+        <li>Abordaje de patología dual (adicción + trastorno mental)</li>
+        <li>Reinserción social y acompañamiento post-tratamiento</li>
+      </ul>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20me%20interesa%20tratamiento%20de%20dependencia%20a%20sustancias." class="btn-fill">Consultar programa</a>
+    </div>
+  </div>
+
+  <!-- Conductuales -->
+  <div class="tr-det-item" id="det-conductuales" data-r>
+    <div class="tr-det-img"><img src="./recursos%20imagenes%20vittale/dependencia%20conductual.png" alt="Adicciones conductuales"></div>
+    <div class="tr-det-txt">
+      <div class="lbl">Adicciones · 03</div>
+      <h3>Adicciones<br><em>Conductuales</em></h3>
+      <p>El juego patológico, la adicción al trabajo o a las pantallas activan los mismos circuitos cerebrales de recompensa que las drogas. Son tan reales y requieren igual atención clínica.</p>
+      <p>Identificamos los patrones cognitivos que sostienen la conducta adictiva y construimos estrategias de control e impulsividad.</p>
+      <ul class="benefit-list">
+        <li>Evaluación psiquiátrica de conductas impulsivas y compulsivas</li>
+        <li>TCC adaptada a cada tipo de adicción conductual</li>
+        <li>Técnicas de control de impulsos y tolerancia al malestar</li>
+        <li>Trabajo con entorno familiar y laboral</li>
+        <li>Seguimiento de recaídas y ajuste de estrategias</li>
+      </ul>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20me%20interesa%20tratamiento%20de%20adicciones%20conductuales." class="btn-fill">Consultar programa</a>
+    </div>
+  </div>
+
+  <!-- TCC -->
+  <div class="tr-det-item rev" id="det-tcc" data-r>
+    <div class="tr-det-img"><img src="./recursos%20imagenes%20vittale/terapia%20cognitivo%20conductual.png" alt="TCC"></div>
+    <div class="tr-det-txt">
+      <div class="lbl">Psicoterapia · 01</div>
+      <h3>Terapia<br><em>Cognitivo-Conductual</em></h3>
+      <p>La TCC es la técnica psicoterapéutica con mayor evidencia científica para depresión, ansiedad, adicciones, TOC y trauma. Trabaja identificando y modificando pensamientos distorsionados.</p>
+      <p>Nuestros terapeutas aplican la TCC en formato individual, de pareja o grupal, adaptando las técnicas a cada diagnóstico.</p>
+      <ul class="benefit-list">
+        <li>Identificación de distorsiones cognitivas y creencias disfuncionales</li>
+        <li>Reestructuración cognitiva y exposición gradual</li>
+        <li>Técnicas de desensibilización sistémica</li>
+        <li>Registro conductual y tareas entre sesiones</li>
+        <li>Herramientas de prevención de recaídas para la vida cotidiana</li>
+      </ul>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20me%20interesa%20la%20Terapia%20Cognitivo-Conductual." class="btn-fill">Consultar programa</a>
+    </div>
+  </div>
+
+  <!-- Evaluación Psiquiátrica -->
+  <div class="tr-det-item" id="det-evaluacion" data-r>
+    <div class="tr-det-img"><img src="./recursos%20imagenes%20vittale/psiquiatra.png" alt="Evaluación psiquiátrica"></div>
+    <div class="tr-det-txt">
+      <div class="lbl">Psiquiatría · 01</div>
+      <h3>Evaluación<br><em>Psiquiátrica</em></h3>
+      <p>Nuestro proceso siempre comienza con una evaluación psiquiátrica exhaustiva de 90 minutos. Es el cimiento de cualquier tratamiento efectivo: sin diagnóstico preciso no hay camino claro.</p>
+      <p>Combinamos historia clínica completa, escalas validadas y criterio clínico para determinar el diagnóstico diferencial y el plan inicial.</p>
+      <ul class="benefit-list">
+        <li>Anamnesis psiquiátrica y médica completa (90 min)</li>
+        <li>Escalas diagnósticas validadas internacionalmente</li>
+        <li>Diagnóstico diferencial y detección de comorbilidades</li>
+        <li>Plan inicial de tratamiento farmacológico y terapéutico</li>
+        <li>Informe clínico escrito entregado al paciente</li>
+      </ul>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20quiero%20agendar%20una%20Evaluaci%C3%B3n%20Psiqui%C3%A1trica." class="btn-fill">Agendar evaluación</a>
+    </div>
+  </div>
+
+  <!-- Neurología -->
+  <div class="tr-det-item rev" id="det-neurologia" data-r>
+    <div class="tr-det-img"><img src="./recursos%20imagenes%20vittale/neurologia.png" alt="Neurología"></div>
+    <div class="tr-det-txt">
+      <div class="lbl">Neurología · 01</div>
+      <h3>Neurología<br><em>Clínica</em></h3>
+      <p>Evaluamos y tratamos un amplio espectro de patologías del sistema nervioso con énfasis en la intersección entre neurología y psiquiatría.</p>
+      <p>Contamos con coordinación para electroencefalograma, estudios neurofisiológicos y neuroimagen para un diagnóstico de precisión.</p>
+      <ul class="benefit-list">
+        <li>Evaluación neurológica completa y exploración clínica</li>
+        <li>Diagnóstico de epilepsia, cefaleas y trastornos del movimiento</li>
+        <li>Coordinación con neuroimagen (RMN, TAC, PET)</li>
+        <li>Seguimiento de enfermedades neurodegenerativas</li>
+        <li>Neurología funcional y trastornos neuropsiquiátricos</li>
+      </ul>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20me%20interesa%20una%20consulta%20de%20Neurolog%C3%ADa." class="btn-fill">Consultar turno</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- CTA FINAL -->
+<section id="tr-cta">
+  <div class="tr-cta-inner">
+    <div class="lbl" style="justify-content:center;opacity:1;margin-bottom:20px" data-r>El primer paso es hoy</div>
+    <h2 data-r>Tu recuperación<br><em>empieza ahora.</em></h2>
+    <p data-r>Sin listas de espera largas. Agenda tu consulta hoy y comienza el camino hacia el bienestar que mereces.</p>
+    <div class="tr-cta-btns" data-r>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20tratamientos." class="btn-fill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Agendar por WhatsApp
+      </a>
+      <a href="./index.html" class="btn-outline">← Volver al inicio</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL IMAGE SEQUENCE -->
+<section id="tr-final">
+  <div class="tr-final-sticky">
+    <canvas id="tr-final-canvas"></canvas>
+    <div class="tr-final-ov"></div>
+    <div class="tr-final-con">
+      <div class="lbl" style="opacity:1;justify-content:center;margin-bottom:32px;">El cambio empieza hoy</div>
+      <h2 class="tr-final-h2" data-r>Tu primera<br><em>consulta te espera.</em></h2>
+      <p class="tr-final-p" data-r>Sin listas de espera largas. Agenda hoy y comienza a recuperar el bienestar que mereces.</p>
+      <div class="tr-final-ctas" data-r>
+        <a href="https://wa.me/5491100000000?text=Quiero%20agendar%20mi%20primera%20consulta%20en%20C.T.P.%20Vittale." class="btn-fill">Agendar ahora</a>
+        <a href="./index.html" class="btn-outline">Volver al inicio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi-inner">
+    <div class="ft">
+      <div class="fb">
+        <a href="./index.html" class="logo"><img src="./logo.png" alt="CTP Vittale" style="height:34px;display:block" onerror="this.outerHTML='V<em>i</em>ttale'"></a>
+        <p>Comunidad Terapéutica Profesionalizada. Un espacio de cuidado, rigor científico y profunda humanidad desde 2015.</p>
+        <p class="ftag">"Donde la ciencia y el cuidado se encuentran."</p>
+      </div>
+      <div class="fc">
+        <h4>Tratamientos</h4>
+        <ul>
+          <li><a href="#det-alcohol">Dependencia al Alcohol</a></li>
+          <li><a href="#det-sustancias">Dependencia a Sustancias</a></li>
+          <li><a href="#det-conductuales">Adicciones Conductuales</a></li>
+          <li><a href="#det-evaluacion">Evaluación Psiquiátrica</a></li>
+          <li><a href="#det-neurologia">Neurología Clínica</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h4>Clínica</h4>
+        <ul>
+          <li><a href="./index.html#ch5">Dra. Elena Aranda</a></li>
+          <li><a href="./index.html#ch4">Nuestro proceso</a></li>
+          <li><a href="./index.html#ch6">Planes</a></li>
+          <li><a href="./index.html#ch7">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:contacto@clinicavittale.com">contacto@clinicavittale.com</a></li>
+          <li><a href="#">Buenos Aires, Argentina</a></li>
+          <li><a href="#">Consultas online disponibles</a></li>
+        </ul>
+        <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20consultar%20sobre%20C.T.P.%20Vittale." class="fc-wa-btn" target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="fb-bot">
+      <p>© 2026 C.T.P. Vittale. Todos los derechos reservados.</p>
+      <div class="velox-row">
+        <span class="velox-by">Desarrollado por <strong>Velox Agency</strong></span>
+        <a href="https://wa.me/5491100000000?text=Hola%2C%20me%20interesa%20una%20p%C3%A1gina%20web%20premium%20como%20la%20de%20Vittale." class="velox-wa" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Quiero mi web
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20consultar%20sobre%20C.T.P.%20Vittale." class="wa" target="_blank" rel="noopener noreferrer">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis({ lerp: 0.08, smoothWheel: false });
+window.__lenis = lenis;
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add(t => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
+
+function makeSeq(id, urls, stConfig) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, curF = -1;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    if (curF >= 0 && imgs[curF] && imgs[curF].naturalWidth) drawF(imgs[curF]);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function drawF(img) {
+    if (!img || !img.naturalWidth) return;
+    const s = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+    const sw = img.naturalWidth * s;
+    const sh = img.naturalHeight * s;
+    ctx.clearRect(0, 0, W, H);
+    ctx.drawImage(img, (W - sw) / 2, (H - sh) / 2, sw, sh);
+  }
+
+  const ph = { f: 0 };
+  const imgs = urls.map((u, i) => {
+    const img = new Image();
+    img.src = u;
+    if (i === 0) img.onload = () => { curF = 0; drawF(img); };
+    return img;
+  });
+
+  gsap.to(ph, {
+    f: imgs.length - 1,
+    ease: 'none',
+    onUpdate() {
+      const f = Math.round(ph.f);
+      if (f !== curF) { curF = f; drawF(imgs[f]); }
+    },
+    scrollTrigger: stConfig
+  });
+}
+
+makeSeq('tr-final-canvas',
+  Array.from({ length: 51 }, (_, i) =>
+    './final%20de%20pag/ezgif-frame-' + String(i + 1).padStart(3, '0') + '.jpg'),
+  { trigger: '#tr-final', start: 'top top', end: 'bottom bottom', scrub: 0.7 });
+
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+const spl = document.getElementById('spl');
+document.addEventListener('mousemove', e => gsap.to(spl, { x: e.clientX, y: e.clientY, duration: 0.7, ease: 'power2.out' }));
+
+function mobClose() { document.getElementById('nav-mobile').classList.remove('open'); }
+document.getElementById('nav-ham').addEventListener('click', () => document.getElementById('nav-mobile').classList.add('open'));
+document.getElementById('nav-mob-close').addEventListener('click', mobClose);
+
+// Hero entrance
+gsap.timeline({ delay: 0.3 })
+  .to('#tr-hero [data-r]', { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.75, stagger: 0.13, ease: 'power3.out' });
+
+// Cards stagger
+gsap.utils.toArray('.tcard').forEach((card, i) => {
+  ScrollTrigger.create({
+    trigger: card, start: 'top 88%', once: true,
+    onEnter: () => gsap.to(card, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: (i % 3) * 0.1 })
+  });
+});
+
+// Scroll reveal data-r (detail sections)
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); ro.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
+
+// Filter
+document.querySelectorAll('.fp').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.fp').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    const cat = pill.dataset.cat;
+    document.querySelectorAll('.tcard').forEach(card => {
+      const show = cat === 'todos' || card.dataset.cat === cat;
+      if (show) {
+        card.classList.remove('hidden');
+        gsap.fromTo(card, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.38, ease: 'power2.out' });
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
