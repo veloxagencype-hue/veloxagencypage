@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C.T.P. Vittale | Psiquiatría, Neurología & Adicciones</title>
+<meta name="description" content="Comunidad Terapéutica Profesionalizada Vittale. Psiquiatría, neurología, psicoterapia y tratamiento de adicciones en Buenos Aires. Cuidado especializado desde 2015.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Outfit:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#040C18;--accent:#5CC8BE;--ar:92,200,190;--gold:#C8A05C;
+  --text:#fff;--muted:rgba(255,255,255,.52);--border:rgba(255,255,255,.07);
+  --ba:rgba(92,200,190,.2);--df:'Fraunces',Georgia,serif;
+  --db:'Outfit',system-ui,sans-serif;--dm:'Space Grotesk',monospace;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--db);line-height:1.6;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.04;pointer-events:none;z-index:9999;mix-blend-mode:overlay}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(92,200,190,.25);border-radius:2px}
+
+/* NAV */
+#nav{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:44px;background:rgba(4,12,24,.75);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);border-radius:100px;padding:12px 20px 12px 28px;transition:all .4s ease;white-space:nowrap}
+#nav.scrolled{background:rgba(4,12,24,.92);border-color:rgba(92,200,190,.12);box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.logo{font-family:var(--df);font-size:18px;font-weight:700;font-style:italic;letter-spacing:-.02em;color:var(--text);text-decoration:none}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-family:var(--dm);font-size:12px;font-weight:400;letter-spacing:.05em;color:rgba(255,255,255,.55);text-decoration:none;text-transform:uppercase;transition:color .2s;display:inline-flex;align-items:center;line-height:1}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.nav-active{color:var(--accent)}
+.nav-cta{background:var(--accent)!important;color:#030B16!important;font-weight:600!important;padding:10px 22px!important;border-radius:100px;letter-spacing:.04em!important;transition:all .25s ease!important}
+.nav-cta:hover{background:#7dd8d0!important;transform:scale(1.04)}
+.nav-ham{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;width:36px;height:36px;flex-shrink:0}
+.nav-ham span{display:block;width:20px;height:1.5px;background:rgba(255,255,255,.7);border-radius:2px;transition:all .3s ease}
+.nav-mobile{display:none;position:fixed;inset:0;background:rgba(4,12,24,.97);backdrop-filter:blur(24px);z-index:1001;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:40px 32px}
+.nav-mobile.open{display:flex}
+.nav-mob-close{position:absolute;top:24px;right:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.55);font-size:22px;line-height:1;transition:all .2s;font-family:var(--dm)}
+.nav-mob-close:hover{background:rgba(255,255,255,.15);color:var(--text)}
+.nav-mobile a{font-family:var(--dm);font-size:18px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.nav-mobile a:hover,.nav-mobile a.nav-active{color:var(--accent)}
+.nav-mobile .nav-cta{background:var(--accent)!important;color:#030B16!important;font-weight:600!important;padding:14px 36px!important;border-radius:100px;margin-top:8px}
+
+/* BOTONES */
+.btn-fill{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#030B16;font-family:var(--dm);font-size:13px;font-weight:600;letter-spacing:.06em;padding:16px 36px;border-radius:100px;text-decoration:none;position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.btn-fill::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .5s ease}
+.btn-fill:hover::before{left:100%}
+.btn-fill:hover{transform:scale(1.04);box-shadow:0 0 48px rgba(var(--ar),.4)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:rgba(255,255,255,.65);font-family:var(--dm);font-size:13px;font-weight:400;letter-spacing:.06em;padding:16px 36px;border-radius:100px;border:1px solid rgba(255,255,255,.15);text-decoration:none;transition:all .25s ease}
+.btn-outline:hover{border-color:rgba(255,255,255,.4);color:var(--text);transform:scale(1.02)}
+.lbl{display:flex;align-items:center;gap:16px;font-family:var(--dm);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);opacity:.75;margin-bottom:28px}
+.lbl::before{content:'';display:block;width:32px;height:1px;background:var(--accent)}
+[data-r]{opacity:0;transform:translateY(28px);filter:blur(3px);transition:opacity .75s ease,transform .75s ease,filter .75s ease}
+[data-r].on{opacity:1;transform:translateY(0);filter:blur(0)}
+#spl{position:fixed;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(var(--ar),.03) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);z-index:9990;mix-blend-mode:screen}
+
+/* ── HERO ── */
+#ch1{position:relative;height:100vh;min-height:700px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:0 32px}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,12,24,.55) 0%,rgba(4,12,24,.45) 50%,rgba(4,12,24,.85) 100%)}
+.hero-con{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;max-width:1000px}
+.hero-tag{display:inline-flex;align-items:center;gap:16px;font-family:var(--dm);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);opacity:.75;margin-bottom:28px}
+.hero-tag::before,.hero-tag::after{content:'';display:block;width:28px;height:1px;background:var(--accent);opacity:.6}
+.hero-h1{font-family:var(--df);font-size:clamp(56px,8vw,108px);font-weight:800;line-height:.9;letter-spacing:-.055em;font-variation-settings:"opsz" 144;margin-bottom:24px}
+.hero-h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-family:var(--dm);font-size:clamp(12px,1.2vw,14px);font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.38);max-width:480px;margin:0 auto 48px;line-height:1.8}
+.hero-ctas{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;z-index:2}
+.hero-scroll span{font-family:var(--dm);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.22)}
+.hero-scroll-line{width:1px;height:48px;background:linear-gradient(180deg,rgba(var(--ar),.6) 0%,transparent 100%);animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.15)}}
+
+/* ── STATS ── */
+#ch2{padding:80px 64px;border-bottom:1px solid var(--border)}
+.stats-row{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.stat-item{text-align:center}
+.stat-num{font-family:var(--df);font-size:clamp(44px,5vw,68px);font-weight:800;letter-spacing:-.04em;font-variation-settings:"opsz" 144;line-height:1;color:var(--accent);margin-bottom:10px}
+.stat-num span{font-size:.55em;vertical-align:super}
+.stat-label{font-family:var(--dm);font-size:12px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+
+/* ── AREAS ── */
+#ch3{padding:120px 64px;border-bottom:1px solid var(--border)}
+.sec-header{max-width:1400px;margin:0 auto 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end}
+.sec-header-txt h2{font-family:var(--df);font-size:clamp(42px,5vw,68px);font-weight:700;line-height:1;letter-spacing:-.04em;font-variation-settings:"opsz" 144;margin-bottom:0}
+.sec-header-txt h2 em{font-style:italic;color:var(--accent)}
+.sec-header-desc{font-size:15px;color:rgba(255,255,255,.4);line-height:1.8;max-width:420px;align-self:end}
+.areas-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.area-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .35s ease;text-decoration:none;display:block}
+.area-card:hover{transform:translateY(-5px);border-color:var(--ba);box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.area-img{aspect-ratio:1;overflow:hidden}
+.area-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.area-card:hover .area-img img{transform:scale(1.07)}
+.area-body{padding:24px}
+.area-tag{font-family:var(--dm);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(var(--ar),.6);margin-bottom:8px}
+.area-title{font-family:var(--df);font-size:22px;font-weight:700;letter-spacing:-.025em;line-height:1.15;margin-bottom:10px}
+.area-desc{font-size:13px;color:rgba(255,255,255,.38);line-height:1.65}
+
+/* ── PROCESO ── */
+#ch4{padding:120px 64px;border-bottom:1px solid var(--border);background:radial-gradient(ellipse at 50% 0%,rgba(92,200,190,.04) 0%,transparent 60%)}
+.proceso-header{max-width:1400px;margin:0 auto 80px;text-align:center}
+.proceso-header h2{font-family:var(--df);font-size:clamp(40px,5vw,64px);font-weight:700;line-height:1.02;letter-spacing:-.04em;font-variation-settings:"opsz" 144;margin-bottom:14px}
+.proceso-header h2 em{font-style:italic;color:var(--accent)}
+.proceso-header p{font-size:15px;color:rgba(255,255,255,.38);max-width:480px;margin:0 auto;line-height:1.8}
+.pasos{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:0}
+.paso{display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start;padding:40px 0;border-bottom:1px solid var(--border)}
+.paso:last-child{border-bottom:none}
+.paso-num{font-family:var(--df);font-size:56px;font-weight:800;line-height:1;letter-spacing:-.05em;font-variation-settings:"opsz" 144;color:rgba(var(--ar),.18);flex-shrink:0}
+.paso-body h3{font-family:var(--df);font-size:26px;font-weight:700;letter-spacing:-.025em;margin-bottom:12px;line-height:1.1}
+.paso-body h3 em{font-style:italic;color:var(--accent)}
+.paso-body p{font-size:14px;color:rgba(255,255,255,.45);line-height:1.8;max-width:600px}
+.paso-tag{display:inline-block;font-family:var(--dm);font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(var(--ar),.7);border:1px solid rgba(var(--ar),.2);border-radius:100px;padding:5px 14px;margin-bottom:12px}
+
+/* ── DOCTORA ── */
+#ch5{padding:120px 64px;border-bottom:1px solid var(--border)}
+.dra-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.dra-img-wrap{position:relative}
+.dra-img{border-radius:24px;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--border)}
+.dra-img img{width:100%;height:100%;object-fit:cover;display:block}
+.dra-img-ph{width:100%;height:100%;min-height:500px;background:linear-gradient(135deg,rgba(var(--ar),.08) 0%,rgba(4,12,24,.8) 100%);display:flex;align-items:center;justify-content:center}
+.dra-badge{position:absolute;bottom:-20px;right:-20px;background:rgba(4,12,24,.92);border:1px solid rgba(var(--ar),.25);border-radius:16px;padding:22px 28px;backdrop-filter:blur(16px)}
+.dra-badge-num{font-family:var(--df);font-size:38px;font-weight:800;letter-spacing:-.04em;color:var(--accent);line-height:1}
+.dra-badge-lbl{font-family:var(--dm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px}
+.dra-txt h2{font-family:var(--df);font-size:clamp(38px,4.5vw,58px);font-weight:700;line-height:1.02;letter-spacing:-.04em;font-variation-settings:"opsz" 144;margin-bottom:20px}
+.dra-txt h2 em{font-style:italic;color:var(--accent)}
+.dra-name{font-family:var(--dm);font-size:14px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:32px}
+.dra-txt p{font-size:15px;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:16px}
+.dra-creds{display:flex;flex-direction:column;gap:12px;margin:32px 0}
+.dra-cred{display:flex;align-items:flex-start;gap:14px;font-size:13px;color:rgba(255,255,255,.5);line-height:1.5}
+.dra-cred::before{content:'';display:block;width:18px;height:18px;flex-shrink:0;margin-top:1px;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9' cy='9' r='8.5' stroke='rgba(92,200,190,.35)'/%3E%3Cpath d='M5.5 9l2.5 2.5 5-5' stroke='%235CC8BE' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:contain}
+
+/* ── PLANES ── */
+#ch6{padding:120px 64px;border-bottom:1px solid var(--border);background:radial-gradient(ellipse at 50% 0%,rgba(92,200,190,.04) 0%,transparent 60%)}
+.planes-header{max-width:1400px;margin:0 auto 72px;text-align:center}
+.planes-header h2{font-family:var(--df);font-size:clamp(40px,5vw,64px);font-weight:700;line-height:1.02;letter-spacing:-.04em;font-variation-settings:"opsz" 144;margin-bottom:14px}
+.planes-header h2 em{font-style:italic;color:var(--accent)}
+.planes-header p{font-size:15px;color:rgba(255,255,255,.38);max-width:440px;margin:0 auto;line-height:1.8}
+.planes-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plan{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:24px;padding:40px 36px;position:relative;transition:all .35s ease}
+.plan.featured{background:rgba(var(--ar),.07);border-color:rgba(var(--ar),.35)}
+.plan:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.plan-badge{display:inline-block;font-family:var(--dm);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#030B16;background:var(--accent);border-radius:100px;padding:5px 14px;margin-bottom:20px}
+.plan-name{font-family:var(--df);font-size:28px;font-weight:700;letter-spacing:-.025em;margin-bottom:10px}
+.plan-price{font-family:var(--df);font-size:48px;font-weight:800;letter-spacing:-.05em;color:var(--accent);line-height:1;margin-bottom:6px;font-variation-settings:"opsz" 144}
+.plan-price span{font-size:.45em;font-weight:400;color:rgba(255,255,255,.35);font-family:var(--dm)}
+.plan-price-note{font-family:var(--dm);font-size:11px;color:rgba(255,255,255,.28);letter-spacing:.1em;margin-bottom:28px}
+.plan-divider{height:1px;background:var(--border);margin-bottom:24px}
+.plan-feats{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.plan-feats li{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:rgba(255,255,255,.5);line-height:1.5}
+.plan-feats li::before{content:'';display:block;width:16px;height:16px;flex-shrink:0;margin-top:1px;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9' cy='9' r='8.5' stroke='rgba(92,200,190,.35)'/%3E%3Cpath d='M5.5 9l2.5 2.5 5-5' stroke='%235CC8BE' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:contain}
+.plan-cta-btn{display:block;text-align:center;font-family:var(--dm);font-size:13px;font-weight:600;letter-spacing:.06em;padding:16px;border-radius:100px;text-decoration:none;transition:all .25s ease}
+.plan-cta-btn.accent{background:var(--accent);color:#030B16}
+.plan-cta-btn.accent:hover{background:#7dd8d0;transform:scale(1.03)}
+.plan-cta-btn.ghost{border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.6)}
+.plan-cta-btn.ghost:hover{border-color:rgba(255,255,255,.4);color:var(--text)}
+
+/* ── FAQ ── */
+#ch7{padding:120px 64px;border-bottom:1px solid var(--border)}
+.faq-inner{max-width:900px;margin:0 auto}
+.faq-header{text-align:center;margin-bottom:72px}
+.faq-header h2{font-family:var(--df);font-size:clamp(38px,4.5vw,60px);font-weight:700;line-height:1.02;letter-spacing:-.04em;font-variation-settings:"opsz" 144;margin-bottom:14px}
+.faq-header h2 em{font-style:italic;color:var(--accent)}
+.faq-header p{font-size:15px;color:rgba(255,255,255,.38);max-width:440px;margin:0 auto;line-height:1.8}
+.faq-item{border-bottom:1px solid var(--border);overflow:hidden}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 0;cursor:pointer;font-family:var(--df);font-size:20px;font-weight:600;letter-spacing:-.02em;line-height:1.2;transition:color .2s}
+.faq-q:hover{color:var(--accent)}
+.faq-icon{flex-shrink:0;width:28px;height:28px;border:1px solid rgba(255,255,255,.18);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s ease}
+.faq-icon svg{width:12px;height:12px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
+.faq-item.open .faq-icon{background:rgba(var(--ar),.12);border-color:rgba(var(--ar),.4)}
+.faq-item.open .faq-icon svg{transform:rotate(45deg);stroke:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a-inner{padding:0 0 26px;font-size:15px;color:rgba(255,255,255,.48);line-height:1.85;max-width:760px}
+.faq-item.open .faq-a{max-height:400px}
+
+/* ── CTA FINAL ── */
+#ch8{padding:140px 64px;text-align:center;position:relative;overflow:hidden}
+#ch8::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(92,200,190,.06) 0%,transparent 65%);pointer-events:none}
+.cta-inner{max-width:760px;margin:0 auto;position:relative;z-index:2}
+.cta-inner h2{font-family:var(--df);font-size:clamp(48px,7vw,88px);font-weight:800;line-height:.92;letter-spacing:-.055em;font-variation-settings:"opsz" 144;margin-bottom:20px}
+.cta-inner h2 em{font-style:italic;color:var(--accent)}
+.cta-inner p{font-size:16px;color:rgba(255,255,255,.42);line-height:1.8;margin-bottom:48px;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}
+
+/* ── FOOTER ── */
+footer{background:rgba(255,255,255,.018);border-top:1px solid var(--border);padding:80px 64px 52px}
+.fi-inner{max-width:1400px;margin:0 auto}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;padding-bottom:60px;border-bottom:1px solid var(--border)}
+.fb p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.33);max-width:300px;margin-bottom:26px;margin-top:20px}
+.ftag{font-family:var(--df);font-size:17px;font-style:italic;font-weight:400;color:rgba(255,255,255,.26)}
+.fc h4{font-family:var(--dm);font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.24);margin-bottom:18px}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.fc a{font-size:14px;color:rgba(255,255,255,.42);text-decoration:none;transition:color .2s}
+.fc a:hover{color:var(--text)}
+.fb-bot{padding-top:34px;display:flex;justify-content:space-between;align-items:center}
+.fb-bot p{font-family:var(--dm);font-size:12px;color:rgba(255,255,255,.2)}
+.velox-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.velox-by{font-family:var(--dm);font-size:12px;color:rgba(255,255,255,.22)}
+.velox-by strong{color:rgba(255,255,255,.4);font-weight:600}
+.velox-wa{display:inline-flex;align-items:center;gap:7px;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.18);color:rgba(255,255,255,.45);font-family:var(--dm);font-size:11px;font-weight:500;letter-spacing:.07em;padding:7px 16px;border-radius:100px;text-decoration:none;transition:all .25s ease}
+.velox-wa:hover{background:rgba(37,211,102,.16);border-color:rgba(37,211,102,.38);color:#4dda80}
+.fc-wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#030B16;font-family:var(--dm);font-size:12px;font-weight:600;letter-spacing:.05em;padding:11px 20px;border-radius:100px;text-decoration:none;transition:all .25s ease;margin-top:16px;width:fit-content}
+.fc-wa-btn:hover{background:#1eb858;transform:scale(1.03)}
+.wa{position:fixed;bottom:32px;right:32px;z-index:2000;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 32px rgba(37,211,102,.4);transition:transform .25s ease,box-shadow .25s ease}
+.wa:hover{transform:scale(1.1);box-shadow:0 12px 44px rgba(37,211,102,.55)}
+.wa svg{width:28px;height:28px;fill:white}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .areas-grid{grid-template-columns:repeat(2,1fr)}
+  .dra-inner{grid-template-columns:1fr;gap:60px}
+  .dra-img{aspect-ratio:16/9;max-height:480px}
+  .dra-badge{right:20px}
+}
+@media(max-width:960px){
+  .nav-ham{display:flex}
+  #nav .nav-links{display:none}
+  #ch2{padding:60px 32px}
+  .stats-row{grid-template-columns:repeat(2,1fr);gap:32px}
+  #ch3,#ch4,#ch5,#ch6,#ch7,#ch8{padding:80px 32px}
+  .sec-header{grid-template-columns:1fr;gap:20px}
+  .planes-grid{grid-template-columns:1fr}
+  .ft{grid-template-columns:1fr 1fr}
+  .fb{grid-column:1/-1}
+  footer{padding:60px 32px 40px}
+}
+@media(max-width:600px){
+  #nav{padding:10px 16px 10px 20px;gap:20px}
+  .areas-grid{grid-template-columns:1fr}
+  .hero-ctas{flex-direction:column;align-items:stretch}
+  .hero-ctas .btn-fill,.hero-ctas .btn-outline{justify-content:center}
+  .cta-btns{flex-direction:column;align-items:stretch}
+  .cta-btns .btn-fill,.cta-btns .btn-outline{justify-content:center}
+  .ft{grid-template-columns:1fr}
+  .paso{grid-template-columns:48px 1fr;gap:20px}
+}
+</style>
+</head>
+<body>
+
+<div id="spl"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="./index.html" class="logo nav-active" style="display:flex;align-items:center"><img src="./logo.png" alt="CTP Vittale" style="height:38px;display:block" onerror="this.outerHTML='V<em>i</em>ttale'"></a>
+  <div class="nav-links">
+    <a href="./tratamientos.html">Tratamientos</a>
+    <a href="#ch4">Proceso</a>
+    <a href="#ch5">La Doctora</a>
+    <a href="#ch6">Planes</a>
+    <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20consultar%20sobre%20C.T.P.%20Vittale." class="nav-cta">Agendar consulta</a>
+  </div>
+  <button class="nav-ham" id="nav-ham" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <button class="nav-mob-close" id="nav-mob-close">×</button>
+  <a href="./index.html" class="nav-active" onclick="mobClose()">Inicio</a>
+  <a href="./tratamientos.html" onclick="mobClose()">Tratamientos</a>
+  <a href="#ch4" onclick="mobClose()">Proceso</a>
+  <a href="#ch5" onclick="mobClose()">La Doctora</a>
+  <a href="#ch6" onclick="mobClose()">Planes</a>
+  <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20consultar%20sobre%20C.T.P.%20Vittale." class="nav-cta" onclick="mobClose()">Agendar consulta</a>
+</div>
+
+<!-- HERO -->
+<section id="ch1">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-ov"></div>
+  <div class="hero-con">
+    <div class="hero-tag" data-r>C.T.P. Vittale · Buenos Aires</div>
+    <h1 class="hero-h1" data-r>Psiquiatría &amp;<br><em>Bienestar</em><br>Integral</h1>
+    <p class="hero-sub" data-r>Adicciones · Psiquiatría · Neurología · Psicoterapia</p>
+    <div class="hero-ctas" data-r>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20quiero%20agendar%20mi%20primera%20consulta." class="btn-fill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Agendar consulta
+      </a>
+      <a href="./tratamientos.html" class="btn-outline">Ver tratamientos</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="ch2">
+  <div class="stats-row">
+    <div class="stat-item" data-r>
+      <div class="stat-num">10<span>+</span></div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div class="stat-item" data-r>
+      <div class="stat-num">2.400<span>+</span></div>
+      <div class="stat-label">Pacientes tratados</div>
+    </div>
+    <div class="stat-item" data-r>
+      <div class="stat-num">4</div>
+      <div class="stat-label">Especialidades integradas</div>
+    </div>
+    <div class="stat-item" data-r>
+      <div class="stat-num">97<span>%</span></div>
+      <div class="stat-label">Satisfacción de pacientes</div>
+    </div>
+  </div>
+</section>
+
+<!-- ÁREAS -->
+<section id="ch3">
+  <div class="sec-header" data-r>
+    <div class="sec-header-txt">
+      <div class="lbl">Nuestras especialidades</div>
+      <h2>Un abordaje<br><em>completo.</em></h2>
+    </div>
+    <p class="sec-header-desc">Integramos psiquiatría, neurología, psicoterapia y tratamiento de adicciones bajo un mismo techo. Porque la salud mental no admite fragmentos.</p>
+  </div>
+  <div class="areas-grid">
+    <a href="./tratamientos.html#det-alcohol" class="area-card" data-r>
+      <div class="area-img"><img src="./recursos%20imagenes%20vittale/tratamiento%20adicciones.png" alt="Adicciones"></div>
+      <div class="area-body">
+        <div class="area-tag">Área 01</div>
+        <div class="area-title">Adicciones</div>
+        <p class="area-desc">Alcohol, sustancias, psicofármacos y conductuales. Desintoxicación supervisada y rehabilitación integral.</p>
+      </div>
+    </a>
+    <a href="./tratamientos.html#det-evaluacion" class="area-card" data-r>
+      <div class="area-img"><img src="./recursos%20imagenes%20vittale/psiquiatra.png" alt="Psiquiatría"></div>
+      <div class="area-body">
+        <div class="area-tag">Área 02</div>
+        <div class="area-title">Psiquiatría</div>
+        <p class="area-desc">Evaluación completa, depresión, ansiedad, TDAH, trastornos del humor y psiquiatría geriátrica.</p>
+      </div>
+    </a>
+    <a href="./tratamientos.html#det-tcc" class="area-card" data-r>
+      <div class="area-img"><img src="./recursos%20imagenes%20vittale/terapia%20cognitivo%20conductual.png" alt="Psicoterapia"></div>
+      <div class="area-body">
+        <div class="area-tag">Área 03</div>
+        <div class="area-title">Psicoterapia</div>
+        <p class="area-desc">TCC individual y grupal, terapia familiar, EMDR para trauma y PTSD. Técnicas con base científica.</p>
+      </div>
+    </a>
+    <a href="./tratamientos.html#det-neurologia" class="area-card" data-r>
+      <div class="area-img"><img src="./recursos%20imagenes%20vittale/neurologia.png" alt="Neurología"></div>
+      <div class="area-body">
+        <div class="area-tag">Área 04</div>
+        <div class="area-title">Neurología</div>
+        <p class="area-desc">Diagnóstico y seguimiento de patologías neurológicas, trastornos del sueño y segunda opinión médica.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="ch4">
+  <div class="proceso-header" data-r>
+    <div class="lbl" style="justify-content:center">Nuestro proceso</div>
+    <h2>Cómo trabajamos<br><em>contigo.</em></h2>
+    <p>Cada tratamiento comienza con escucha. Luego construimos juntos el camino hacia tu bienestar.</p>
+  </div>
+  <div class="pasos">
+    <div class="paso" data-r>
+      <div class="paso-num">01</div>
+      <div class="paso-body">
+        <div class="paso-tag">Primer contacto</div>
+        <h3>Consulta <em>inicial</em></h3>
+        <p>Una conversación de 90 minutos donde te escuchamos sin juicios. Anamnesis psiquiátrica completa, historia de vida y evaluación del estado mental actual. Sin diagnóstico apresurado — primero entendemos.</p>
+      </div>
+    </div>
+    <div class="paso" data-r>
+      <div class="paso-num">02</div>
+      <div class="paso-body">
+        <div class="paso-tag">Diagnóstico</div>
+        <h3>Diagnóstico <em>preciso</em></h3>
+        <p>Aplicamos escalas diagnósticas validadas internacionalmente y, cuando es necesario, coordinamos estudios complementarios (neuroimagen, neurofisiología). El diagnóstico correcto es la base de todo tratamiento efectivo.</p>
+      </div>
+    </div>
+    <div class="paso" data-r>
+      <div class="paso-num">03</div>
+      <div class="paso-body">
+        <div class="paso-tag">Plan personalizado</div>
+        <h3>Tu <em>plan único</em></h3>
+        <p>Diseñamos un programa de tratamiento personalizado que puede combinar farmacoterapia, psicoterapia individual o grupal, y apoyo familiar. No hay dos planes iguales porque no hay dos historias iguales.</p>
+      </div>
+    </div>
+    <div class="paso" data-r>
+      <div class="paso-num">04</div>
+      <div class="paso-body">
+        <div class="paso-tag">Acompañamiento</div>
+        <h3>Seguimiento <em>continuo</em></h3>
+        <p>El tratamiento no termina en el consultorio. Mantenemos contacto entre sesiones, ajustamos el plan según la evolución y trabajamos en la prevención de recaídas con seguimiento a largo plazo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORA -->
+<section id="ch5">
+  <div class="dra-inner">
+    <div class="dra-img-wrap" data-r>
+      <div class="dra-img">
+        <div class="dra-img-ph">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="28" r="18" stroke="rgba(92,200,190,.25)" stroke-width="1.5"/>
+            <path d="M10 72c0-16.569 13.431-30 30-30s30 13.431 30 30" stroke="rgba(92,200,190,.25)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="dra-badge">
+        <div class="dra-badge-num">10+</div>
+        <div class="dra-badge-lbl">años de práctica</div>
+      </div>
+    </div>
+    <div class="dra-txt" data-r>
+      <div class="lbl">Quién te atiende</div>
+      <h2>Una especialista<br>que <em>realmente</em><br>escucha.</h2>
+      <div class="dra-name">Dra. Elena Aranda · Psiquiatra y Neuróloga</div>
+      <p>Médica especialista en Psiquiatría y Neurología, formada en la UBA con posgrado en tratamiento de adicciones y patología dual. Más de 10 años acompañando procesos de recuperación complejos.</p>
+      <p>Su enfoque integra la evidencia científica más actualizada con una visión profundamente humana del sufrimiento psíquico. Cree que el diagnóstico preciso y la relación terapéutica genuina son los dos pilares de cualquier tratamiento exitoso.</p>
+      <div class="dra-creds">
+        <div class="dra-cred">MN 12.3456 · Especialista en Psiquiatría (UBA)</div>
+        <div class="dra-cred">Especialización en Neurología Clínica</div>
+        <div class="dra-cred">Posgrado en Tratamiento de Adicciones y Patología Dual</div>
+        <div class="dra-cred">Miembro de la Asociación de Psiquiatras Argentinos (APSA)</div>
+        <div class="dra-cred">Formación en EMDR (Nivel II) para trauma complejo</div>
+      </div>
+      <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20agendar%20una%20consulta%20con%20la%20Dra.%20Aranda." class="btn-fill">Agendar con la Dra. Aranda</a>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section id="ch6">
+  <div class="planes-header" data-r>
+    <div class="lbl" style="justify-content:center">Modalidades de atención</div>
+    <h2>El plan que se<br><em>adapta a vos.</em></h2>
+    <p>Todas las consultas incluyen informe clínico escrito. Sin obra social, sin listas de espera.</p>
+  </div>
+  <div class="planes-grid">
+
+    <div class="plan" data-r>
+      <div class="plan-name">Consulta única</div>
+      <div class="plan-price">Consultar<span></span></div>
+      <div class="plan-price-note">Precio según modalidad y duración</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-feats">
+        <li>Evaluación psiquiátrica de 90 min</li>
+        <li>Diagnóstico diferencial</li>
+        <li>Informe clínico escrito</li>
+        <li>Plan de tratamiento inicial</li>
+        <li>Consultas online disponibles</li>
+      </ul>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20consulto%20por%20una%20evaluaci%C3%B3n%20psiqui%C3%A1trica." class="plan-cta-btn ghost">Consultar precio</a>
+    </div>
+
+    <div class="plan featured" data-r>
+      <div class="plan-badge">Más elegido</div>
+      <div class="plan-name">Programa Integral</div>
+      <div class="plan-price">Consultar<span></span></div>
+      <div class="plan-price-note">Plan mensual personalizado</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-feats">
+        <li>Evaluación inicial completa</li>
+        <li>Sesiones semanales de psicoterapia</li>
+        <li>Seguimiento psiquiátrico mensual</li>
+        <li>Ajuste farmacológico continuo</li>
+        <li>Soporte entre sesiones</li>
+        <li>Trabajo con grupo familiar</li>
+        <li>Plan de prevención de recaídas</li>
+      </ul>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20me%20interesa%20el%20Programa%20Integral." class="plan-cta-btn accent">Quiero este plan</a>
+    </div>
+
+    <div class="plan" data-r>
+      <div class="plan-name">Tratamiento de Adicciones</div>
+      <div class="plan-price">Consultar<span></span></div>
+      <div class="plan-price-note">Según nivel de atención requerido</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-feats">
+        <li>Evaluación toxicológica y psiquiátrica</li>
+        <li>Protocolo de desintoxicación</li>
+        <li>TCC especializada en adicciones</li>
+        <li>Patología dual (adicción + trastorno mental)</li>
+        <li>Programa familiar de psicoeducación</li>
+        <li>Acompañamiento post-tratamiento</li>
+      </ul>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20consulto%20por%20tratamiento%20de%20adicciones." class="plan-cta-btn ghost">Consultar precio</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="ch7">
+  <div class="faq-inner">
+    <div class="faq-header" data-r>
+      <div class="lbl" style="justify-content:center">Preguntas frecuentes</div>
+      <h2>Todo lo que<br><em>querés saber.</em></h2>
+      <p>Respondemos las dudas más comunes antes de tu primera consulta.</p>
+    </div>
+
+    <div class="faq-item" data-r>
+      <div class="faq-q">¿Cuánto dura la primera consulta?
+        <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">La evaluación psiquiátrica inicial dura 90 minutos. Es una sesión extensa porque creemos que un diagnóstico preciso requiere tiempo y escucha genuina. En ese espacio repasamos tu historia clínica completa, el motivo de consulta y elaboramos un primer plan de tratamiento.</div></div>
+    </div>
+
+    <div class="faq-item" data-r>
+      <div class="faq-q">¿Atienden con obra social o prepaga?
+        <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Las consultas son de pago particular. Podés solicitar una orden de consulta de tu prepaga para el reintegro correspondiente según tu plan. Muchos pacientes obtienen reintegros parciales o totales. Consultanos y te asesoramos según tu cobertura.</div></div>
+    </div>
+
+    <div class="faq-item" data-r>
+      <div class="faq-q">¿Hacen consultas online?
+        <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Sí, ofrecemos consultas online para psiquiatría, seguimiento farmacológico y psicoterapia. La evaluación inicial puede hacerse de forma virtual con la misma profundidad que en forma presencial. Las consultas de neurología y algunas evaluaciones específicas requieren presencialidad.</div></div>
+    </div>
+
+    <div class="faq-item" data-r>
+      <div class="faq-q">¿Cuánto tiempo dura un tratamiento de adicciones?
+        <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Depende de la sustancia, el nivel de dependencia y las comorbilidades de cada persona. En general, los programas de tratamiento duran entre 6 y 18 meses, con distintas fases de intensidad. Lo importante no es la duración sino la solidez de la recuperación. Te damos una estimación más precisa en la primera consulta.</div></div>
+    </div>
+
+    <div class="faq-item" data-r>
+      <div class="faq-q">¿Pueden atender a un familiar mío sin que él lo sepa?
+        <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Podemos orientarte a vos como familiar sobre cómo abordar la situación, qué hacer y cómo comunicarte con alguien que necesita ayuda pero no la pide. También ofrecemos sesiones de psicoeducación y contención para familiares. El primer paso muchas veces lo da quien está al lado.</div></div>
+    </div>
+
+    <div class="faq-item" data-r>
+      <div class="faq-q">¿Qué diferencia a C.T.P. Vittale de otros centros?
+        <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">La integración real de psiquiatría, neurología, psicoterapia y tratamiento de adicciones bajo un mismo equipo. No derivamos — coordinamos. Esto permite un abordaje de la patología dual (cuando hay una adicción más un trastorno mental coexistente) que muy pocos centros pueden ofrecer con la misma profundidad.</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="ch8">
+  <div class="cta-inner">
+    <div class="lbl" style="justify-content:center;opacity:1;margin-bottom:20px" data-r>El primer paso es hoy</div>
+    <h2 data-r>Tu recuperación<br><em>empieza ahora.</em></h2>
+    <p data-r>Sin listas de espera largas. Agenda tu consulta hoy y comienza el camino hacia el bienestar que mereces.</p>
+    <div class="cta-btns" data-r>
+      <a href="https://wa.me/5491100000000?text=Hola%20Vittale%2C%20quiero%20agendar%20mi%20primera%20consulta." class="btn-fill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Agendar por WhatsApp
+      </a>
+      <a href="./tratamientos.html" class="btn-outline">Ver todos los tratamientos</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi-inner">
+    <div class="ft">
+      <div class="fb">
+        <a href="./index.html" class="logo"><img src="./logo.png" alt="CTP Vittale" style="height:34px;display:block" onerror="this.outerHTML='V<em>i</em>ttale'"></a>
+        <p>Comunidad Terapéutica Profesionalizada. Un espacio de cuidado, rigor científico y profunda humanidad desde 2015.</p>
+        <p class="ftag">"Donde la ciencia y el cuidado se encuentran."</p>
+      </div>
+      <div class="fc">
+        <h4>Tratamientos</h4>
+        <ul>
+          <li><a href="./tratamientos.html#det-alcohol">Dependencia al Alcohol</a></li>
+          <li><a href="./tratamientos.html#det-sustancias">Dependencia a Sustancias</a></li>
+          <li><a href="./tratamientos.html#det-conductuales">Adicciones Conductuales</a></li>
+          <li><a href="./tratamientos.html#det-evaluacion">Evaluación Psiquiátrica</a></li>
+          <li><a href="./tratamientos.html#det-neurologia">Neurología Clínica</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h4>Clínica</h4>
+        <ul>
+          <li><a href="#ch5">Dra. Elena Aranda</a></li>
+          <li><a href="#ch4">Nuestro proceso</a></li>
+          <li><a href="#ch6">Planes</a></li>
+          <li><a href="#ch7">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:contacto@clinicavittale.com">contacto@clinicavittale.com</a></li>
+          <li><a href="#">Buenos Aires, Argentina</a></li>
+          <li><a href="#">Consultas online disponibles</a></li>
+        </ul>
+        <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20consultar%20sobre%20C.T.P.%20Vittale." class="fc-wa-btn" target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="fb-bot">
+      <p>© 2026 C.T.P. Vittale. Todos los derechos reservados.</p>
+      <div class="velox-row">
+        <span class="velox-by">Desarrollado por <strong>Velox Agency</strong></span>
+        <a href="https://wa.me/5491100000000?text=Hola%2C%20me%20interesa%20una%20p%C3%A1gina%20web%20premium%20como%20la%20de%20Vittale." class="velox-wa" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.455-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Quiero mi web
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20consultar%20sobre%20C.T.P.%20Vittale." class="wa" target="_blank" rel="noopener noreferrer">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis({ lerp: 0.08, smoothWheel: false });
+window.__lenis = lenis;
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add(t => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
+
+// Hero image sequence
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, curF = -1;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    if (curF >= 0 && imgs[curF] && imgs[curF].naturalWidth) drawF(imgs[curF]);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function drawF(img) {
+    if (!img || !img.naturalWidth) return;
+    const s = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+    const sw = img.naturalWidth * s, sh = img.naturalHeight * s;
+    ctx.clearRect(0, 0, W, H);
+    ctx.drawImage(img, (W - sw) / 2, (H - sh) / 2, sw, sh);
+  }
+
+  const ph = { f: 0 };
+  const urls = Array.from({ length: 51 }, (_, i) =>
+    './final%20de%20pag/ezgif-frame-' + String(i + 1).padStart(3, '0') + '.jpg');
+  const imgs = urls.map((u, i) => {
+    const img = new Image();
+    img.src = u;
+    if (i === 0) img.onload = () => { curF = 0; drawF(img); };
+    return img;
+  });
+
+  gsap.to(ph, {
+    f: imgs.length - 1,
+    ease: 'none',
+    onUpdate() {
+      const f = Math.round(ph.f);
+      if (f !== curF) { curF = f; drawF(imgs[f]); }
+    },
+    scrollTrigger: { trigger: '#ch1', start: 'top top', end: '+=200%', scrub: 1 }
+  });
+})();
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+// Spotlight
+const spl = document.getElementById('spl');
+document.addEventListener('mousemove', e => gsap.to(spl, { x: e.clientX, y: e.clientY, duration: 0.7, ease: 'power2.out' }));
+
+// Mobile nav
+function mobClose() { document.getElementById('nav-mobile').classList.remove('open'); }
+document.getElementById('nav-ham').addEventListener('click', () => document.getElementById('nav-mobile').classList.add('open'));
+document.getElementById('nav-mob-close').addEventListener('click', mobClose);
+
+// Hero entrance
+gsap.timeline({ delay: 0.3 })
+  .to('#ch1 [data-r]', { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.75, stagger: 0.14, ease: 'power3.out' });
+
+// Scroll reveal
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); ro.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('[data-r]').forEach(el => {
+  if (!el.closest('#ch1')) ro.observe(el);
+});
+
+// FAQ
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
